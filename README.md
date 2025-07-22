@@ -15,4 +15,22 @@
 
 
 Документация:
+# Библиотека mylog
+
+## Назначение
+Библиотека предоставляет систему логирования с:
+- Записью в файл (`FileSink`)
+- Отправкой по сети (`SocketSink`)
+- Фильтрацией по уровням важности
+- Потокобезопасностью
+
+## Быстрый старт
+```cpp
+#include <mylog/log_manager.h>
+
+int main() {
+    LogManager logger("app.log", Importance::MEDIUM);
+    logger.log("Запуск системы", Importance::HIGH);
+    return 0;
+}
 
