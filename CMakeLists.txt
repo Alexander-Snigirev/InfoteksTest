@@ -19,9 +19,15 @@ target_include_directories(mylog PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(mylog PRIVATE Threads::Threads)
 
 
-add_executable(demo example_app/demo_file.cpp)
+add_executable(demo_file example_app/demo_file.cpp)
 target_include_directories(mylog PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
-target_link_libraries(demo PRIVATE mylog)
+target_link_libraries(demo_file PRIVATE mylog Threads::Threads)
+
+add_executable(tests_logger tests/test_logger.cpp)
+target_include_directories(mylog PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
+target_link_libraries(tests_logger PRIVATE mylog Threads::Threads stdc++fs)
+
+
 
 install(TARGETS mylog
         EXPORT MyLoggingLibraryTargets

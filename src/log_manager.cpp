@@ -4,6 +4,14 @@
 #include <iomanip>
 
 
+
+
+LogManager::LogManager(const std::string& host, unsigned short port, Importance base_imp){
+    this->base_importance = base_imp;
+    this->journal = std::make_unique<SocketSink>(host, port);
+
+}
+
 LogManager::LogManager(const std::string& fname, Importance base_imp){
     this->fname = fname;
     this->base_importance = base_imp;
@@ -16,7 +24,7 @@ void LogManager::set_base_importance(Importance new_base_imp){
 }
 
 
-void LogManager::log(std::string& message, Importance imp){
+void LogManager::log(std::string message, Importance imp){
     if(imp < base_importance){
         return;
     }
@@ -28,5 +36,5 @@ void LogManager::log(std::string& message, Importance imp){
     oss << std::put_time(std::gmtime(&now_c), "[%F, %T]");
     std::string realtime = oss.str();
     std::string log_msg = "[Priority: " + std::to_string(static_cast<int>(imp))+ "]" + realtime + message;
-    this->journal.get()->write(log_msg);
+    this->journal->write(log_msg);
 }
