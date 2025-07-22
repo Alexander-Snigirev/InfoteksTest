@@ -25,8 +25,6 @@ The code adheres to C++17, uses only STL and POSIX APIs, follows OOP principles,
   - `FileSink.cpp`: File-based logging.
   - `SocketSink.cpp`: Socket-based logging.
   - `demo.cpp`: Multithreaded demo application (Part 2).
-  - `server.cpp`: Simple TCP server for testing socket logging.
-  - `stats.cpp`: Statistics collector for socket logs (Part 3).
 - **`tests/`**:
   - `test_logger.cpp`: Unit tests for the library (excluding `SocketSink`).
 - **`CMakeLists.txt`**: Build configuration for library and applications.
